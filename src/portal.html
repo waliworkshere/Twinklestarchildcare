@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#14213d">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>TwinkleStar Portal</title>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;800&family=Tajawal:wght@400;500;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+/*CSS*/
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="star" viewBox="0 0 100 100">
+    <g stroke="#f7c51e" stroke-width="5" stroke-linecap="round"><line x1="50" y1="6" x2="50" y2="18"/><line x1="18" y1="20" x2="27" y2="29"/><line x1="82" y1="20" x2="73" y2="29"/><line x1="6" y1="54" x2="18" y2="54"/><line x1="94" y1="54" x2="82" y2="54"/><line x1="22" y1="86" x2="30" y2="77"/><line x1="78" y1="86" x2="70" y2="77"/><line x1="50" y1="96" x2="50" y2="88"/></g>
+    <path d="M50 24 L58 44 L79 45 L62 58 L68 79 L50 67 L32 79 L38 58 L21 45 L42 44 Z" fill="#ffe27a" stroke="#f7c51e" stroke-width="3" stroke-linejoin="round"/>
+  </symbol>
+</svg>
+
+<section id="login">
+  <div class="lh">
+    <div class="stars" id="stars"></div>
+    <a class="brand" href="index.html"><svg><use href="#star"/></svg><span><b>Twinkle Star</b><small>International Child Care</small><small style="font-family:Tajawal;color:#ffe27a;font-size:12px">توينكل ستار الدولية لرعاية الطفل</small></span></a>
+    <h1>The whole nursery, <em>one sign-in.</em></h1>
+    <p>Attendance, daily reports, assessments, fees with online card payment, admissions, staff and analytics, for parents, teachers and every team at TwinkleStar.</p>
+    <div class="feat"><span>✅ QR check-in & attendance</span><span>📊 IPC assessments & report cards</span><span>💳 Online fee payment</span><span>📈 Principal analytics</span><span>💬 Parent–teacher messaging</span><span>🌐 Website enquiries → admissions</span></div>
+    <a class="back" href="index.html">← Back to the TwinkleStar website</a>
+  </div>
+  <div class="lf"><div class="lbx">
+    <h2>Sign in</h2><div class="sub">Welcome to the TwinkleStar Portal</div>
+    <form id="lf" autocomplete="off" onsubmit="event.preventDefault();login($('#lu').value.trim().toLowerCase(),$('#lp').value)">
+      <div class="f"><label>Username</label><input id="lu" placeholder="e.g. principal"></div>
+      <div class="f"><label>Password</label><input id="lp" type="password" placeholder="••••••"></div>
+      <div class="err" id="lerr"></div>
+      <button class="btn navy full" type="submit">Sign in</button>
+    </form>
+    <div class="or">Demo accounts · tap to sign in</div>
+    <div class="demos" id="demos"></div>
+    <div class="creds">Password for every demo account: <code>demo123</code><br>Usernames: <code>principal</code> <code>admin</code> <code>accounts</code> <code>exams</code> <code>teacher</code> <code>parent</code><br>Sample data only. No real payments. Changes are kept in this browser · <button class="linkbtn" onclick="resetDemo()">reset demo</button></div>
+  </div></div>
+</section>
+
+<section id="app" class="hidden">
+  <aside class="side">
+    <a class="brand" href="index.html"><svg><use href="#star"/></svg><span><b>Twinkle Star</b><small>Portal</small></span></a>
+    <div class="rolebox"><span class="av" id="rbAv"></span><span><b id="rbName"></b><small id="rbRole"></small></span></div>
+    <nav id="snav"></nav>
+    <div class="foot"><a href="index.html" target="_blank">🌐 Public website</a><button onclick="logout()">⎋ Sign out</button></div>
+  </aside>
+  <div class="scrim" onclick="closeSide()"></div>
+  <div style="min-width:0">
+    <header class="topbar">
+      <button class="ibtn mb" onclick="openSide()" aria-label="Menu">☰</button>
+      <div><h1 id="ptitle"></h1><div class="crumb" id="crumb"></div></div>
+      <span class="sp"></span>
+      <button class="ibtn hidden" id="langBtn" onclick="toggleLang()">العربية</button>
+      <span style="position:relative"><button class="ibtn" id="bell" onclick="toggleNotif(event)" aria-label="Notifications">🔔<span class="dot"></span></button><div class="notif hidden" id="notifBox" onclick="event.stopPropagation()"></div></span>
+      <span class="chip"><span class="av sm" id="tAv"></span><span class="nm" id="tName"></span></span>
+      <button class="ibtn hide-m" onclick="logout()">Sign out</button>
+    </header>
+    <main id="main"></main>
+  </div>
+  <nav class="bnav" id="bnav"></nav>
+</section>
+<div id="modal"></div>
+
+<script>
+/*JS*/
+renderLogin();
+(function(){const h=(location.hash||"").slice(1);if(USERS[h])login(h,"demo123")})();
+</script>
+</body>
+</html>
